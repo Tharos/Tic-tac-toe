@@ -87,7 +87,10 @@ class Board
 
 		$player = $this->matrix[$x][$y];
 
-		$isWinningDirection = function ($x, $y, $dx, $dy) use ($player) {
+		/**
+		 * This snippet is based on Jakub Vrana implementation (http://php.vrana.cz/piskvorky-naslepo.php)
+		 */
+		$isWinningInDirection = function ($x, $y, $dx, $dy) use ($player) {
 			for ($i = 1; $i < $this->countToWin; $i++) {
 				$x2 = $x - $i * $dx;
 				$y2 = $y - $i * $dy;
@@ -109,7 +112,7 @@ class Board
 
 		$winning = false;
 		foreach ([[1, 0], [0, 1], [1, 1], [1, -1]] as $vector) {
-			$winning |= $isWinningDirection($x, $y, $vector[0], $vector[1]);
+			$winning |= $isWinningInDirection($x, $y, $vector[0], $vector[1]);
 		}
 
 		return $winning;
