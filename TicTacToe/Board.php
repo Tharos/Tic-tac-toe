@@ -89,8 +89,8 @@ class Board
 
 		$isWinningDirection = function ($x, $y, $dx, $dy) use ($player) {
 			for ($i = 1; $i < $this->countToWin; $i++) {
-				$x2 = $x - $i * $dy;
-				$y2 = $y - $i * $dx;
+				$x2 = $x - $i * $dx;
+				$y2 = $y - $i * $dy;
 				if (!isset($this->matrix[$x2][$y2]) or $this->matrix[$x2][$y2] !== $player) {
 					break;
 				}
