@@ -45,6 +45,10 @@ class Game
 					$board = new Board($this->settings);
 					break;
 
+				case 'show':
+					$this->printBoard($board);
+					break;
+
 				default:
 					$x = substr($command, 1, 1);
 					$y = ord(substr($command, 0, 1)) - ord('a') + 1;
@@ -72,8 +76,27 @@ class Game
 			"Povolené příkazy jsou:\n" .
 			"new - nová hra\n" .
 			"quit - konec\n" .
+			"show - zobrazení hracího pole\n" .
 			"[a-i][0-9] - tah na pole, kde řada je pozice a, b, c, d, e, f, g, h, i. Sloupec je 1 až 9.\n" .
 			"Formát zápisu je např. e5.\n";
+	}
+
+	/**
+	 * @param Board $board
+	 */
+	private function printBoard(Board $board)
+	{
+		$boardState = $board->getState();
+
+		array_unshift($boardState, null);
+		$boardState = call_user_func_array('array_map', $boardState);
+
+		foreach ($boardState as $line) {
+			foreach ($line as $value) {
+				echo isset($value) ? "$value " : ". ";
+			}
+			echo "\n";
+		}
 	}
 
 }

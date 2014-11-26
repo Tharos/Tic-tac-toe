@@ -75,6 +75,14 @@ class Board
 	}
 
 	/**
+	 * @return array
+	 */
+	public function getState()
+	{
+		return $this->matrix;
+	}
+
+	/**
 	 * @param int $x
 	 * @param int $y
 	 * @return bool
