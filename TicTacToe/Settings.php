@@ -36,8 +36,8 @@ class Settings
 		if ($sizeX < self::MINIMAL_DIMENSIONS or $sizeY < self::MINIMAL_DIMENSIONS) {
 			throw new InvalidArgumentException('Minimal board dimensions are ' . self::MINIMAL_DIMENSIONS . 'x' . self::MINIMAL_DIMENSIONS);
 		}
-		if ($countToWin < self::MINIMAL_DIMENSIONS) {
-			throw new InvalidArgumentException('Count to win cannot be lower than ' . self::MINIMAL_DIMENSIONS);
+		if ($countToWin > ($max = max($sizeX, $sizeY))) {
+			throw new InvalidArgumentException("Count to win cannot be lower than $max");
 		}
 
 		$this->sizeX = $sizeX;
