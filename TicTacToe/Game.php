@@ -64,6 +64,7 @@ class Game
 						} catch (GameOverException $e) {
 							echo $e->getMessage() . "\n";
 							$playing = false;
+							$this->printBoard($board);
 						}
 					}
 			}
