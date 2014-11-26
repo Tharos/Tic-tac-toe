@@ -21,7 +21,7 @@ class Settings
 	/** @var int */
 	private $countToWin;
 
-	/** @var array */
+	/** @var string[] */
 	private $players;
 
 
