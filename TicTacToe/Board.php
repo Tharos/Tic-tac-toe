@@ -33,11 +33,11 @@ class Board
 		$this->countToWin = $settings->getCountToWin();
 		$this->remainingTurns = $sizeX * $sizeY;
 
-		$this->players = new Players($settings->getPlayers());
+		$this->players = new Players($settings->getPlayerSignatures());
 	}
 
 	/**
-	 * @return string
+	 * @return Player
 	 */
 	public function getCurrentPlayer()
 	{

@@ -31,8 +31,7 @@ class Game
 		$playing = true;
 
 		while ($playing) {
-			$currentPlayer = $board->getCurrentPlayer();
-			echo "Hráč $currentPlayer: ";
+			echo 'Hráč ' . $board->getCurrentPlayer() . ': ';
 
 			$command = rtrim(fgets(STDIN));
 			switch ($command) {

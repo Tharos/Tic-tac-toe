@@ -22,16 +22,16 @@ class Settings
 	private $countToWin;
 
 	/** @var string[] */
-	private $players;
+	private $playerSignatures;
 
 
 	/**
 	 * @param int $sizeX
 	 * @param int $sizeY
 	 * @param int $countToWin
-	 * @param string[] $players
+	 * @param string[] $playerSignatures
 	 */
-	public function __construct($sizeX, $sizeY, $countToWin, array $players)
+	public function __construct($sizeX, $sizeY, $countToWin, array $playerSignatures)
 	{
 		if ($sizeX < self::MINIMAL_DIMENSIONS or $sizeY < self::MINIMAL_DIMENSIONS) {
 			throw new InvalidArgumentException('Minimal board dimensions are ' . self::MINIMAL_DIMENSIONS . 'x' . self::MINIMAL_DIMENSIONS);
@@ -43,7 +43,7 @@ class Settings
 		$this->sizeX = $sizeX;
 		$this->sizeY = $sizeY;
 		$this->countToWin = $countToWin;
-		$this->players = $players;
+		$this->playerSignatures = $playerSignatures;
 	}
 
 	/**
@@ -73,9 +73,9 @@ class Settings
 	/**
 	 * @return string[]
 	 */
-	public function getPlayers()
+	public function getPlayerSignatures()
 	{
-		return $this->players;
+		return $this->playerSignatures;
 	}
 
 }

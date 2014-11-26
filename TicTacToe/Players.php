@@ -12,26 +12,28 @@ class Players
 
 	const MINIMAL_PLAYERS_COUNT = 2;
 
-	/** @var string[] */
+	/** @var Player[] */
 	private $players = [];
 
 
 	/**
-	 * @param string[] $players
+	 * @param string[] $playerSignatures
 	 * @throws InvalidArgumentException
 	 */
-	public function __construct(array $players)
+	public function __construct(array $playerSignatures)
 	{
-		foreach ($players as $player) {
-			$this->registerPlayer($player);
+		foreach ($playerSignatures as $playerSignature) {
+			$this->registerPlayer($playerSignature);
 		}
-		if (count($players) < self::MINIMAL_PLAYERS_COUNT) {
+		if (count($this->players) < self::MINIMAL_PLAYERS_COUNT) {
 			throw new InvalidArgumentException('At least ' . self::MINIMAL_PLAYERS_COUNT . ' must participate the game.');
 		}
+
+		reset($this->players);
 	}
 
 	/**
-	 * @return string
+	 * @return Player
 	 */
 	public function getCurrentPlayer()
 	{
@@ -46,18 +48,18 @@ class Players
 	}
 
 	/**
-	 * @param string $player
+	 * @param string $playerSignature
 	 * @throws InvalidArgumentException
 	 */
-	private function registerPlayer($player)
+	private function registerPlayer($playerSignature)
 	{
-		$player = (string) $player;
-
-		if (in_array($player, $this->players, true)) {
-			throw new InvalidArgumentException("Player '$player' already exists.'");
+		foreach ($this->players as $registeredPlayer) {
+			if ($registeredPlayer->getSignature() === $playerSignature) {
+				throw new InvalidArgumentException("Player with signature '$playerSignature' already exists.'");
+			}
 		}
 
-		$this->players[] = $player;
+		$this->players[] = new Player($playerSignature);
 	}
 
 }
