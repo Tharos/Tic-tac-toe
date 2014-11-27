@@ -10,5 +10,12 @@ use Nette\Application\UI\Presenter;
 class GamePresenter extends Presenter
 {
 
+	/**
+	 * @return GameControl
+	 */
+	protected function createComponentGame()
+	{
+		return new GameControl;
+	}
 
 }
