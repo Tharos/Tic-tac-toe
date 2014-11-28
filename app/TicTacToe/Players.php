@@ -15,6 +15,9 @@ class Players
 	/** @var Player[] */
 	private $players = [];
 
+	/** @var Player */
+	private $currentPlayer;
+
 
 	/**
 	 * @param string[] $playerSignatures
@@ -29,7 +32,7 @@ class Players
 			throw new InvalidArgumentException('At least ' . self::MINIMAL_PLAYERS_COUNT . ' must participate the game.');
 		}
 
-		reset($this->players);
+		$this->currentPlayer = reset($this->players);
 	}
 
 	/**
@@ -37,14 +40,13 @@ class Players
 	 */
 	public function getCurrentPlayer()
 	{
-		return current($this->players);
+		return $this->currentPlayer;
 	}
 
 	public function togglePlayers()
 	{
-		if (next($this->players) === false) {
-			reset($this->players);
-		}
+		$key = array_search($this->currentPlayer, $this->players, true);
+		$this->currentPlayer = isset($this->players[$nextKey = $key + 1]) ? $this->players[$nextKey] : reset($this->players);
 	}
 
 	/**
