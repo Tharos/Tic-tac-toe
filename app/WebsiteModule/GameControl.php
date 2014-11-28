@@ -50,15 +50,9 @@ class GameControl extends Control
 		}
 	}
 
-	public function handleShowBoard()
+	public function handleToggleBoard()
 	{
-		$this->showBoard = true;
-		$this->redirect('this');
-	}
-
-	public function handleHideBoard()
-	{
-		$this->showBoard = false;
+		$this->showBoard = !$this->showBoard;
 		$this->redirect('this');
 	}
 

@@ -1,12 +1,5 @@
 {if !$isLocked}
-	<p>
-		{if $shouldBoardBePrinted}
-			<a n:href="hideBoard!">Skrýt hrací pole</a>
-		{else}
-			<a n:href="showBoard!">Zobrazit hrací pole</a>
-		{/if}
-	</p>
-
+	<p><a n:href="toggleBoard!">{if $shouldBoardBePrinted}Skrýt hrací pole{else}Zobrazit hrací pole{/if}</a></p>
 	<p>Hráč {$currentPlayer}</p>
 {/if}
 
