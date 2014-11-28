@@ -66,8 +66,12 @@ class GameControl extends Control
 	{
 		$this->template->message = $this->persistentGame->getMessage();
 		$this->template->isLocked = $this->persistentGame->isLocked();
-		$this->template->shouldBoardBePrinted = ($this->showBoard or $this->persistentGame->isLocked());
+		$this->template->shouldBoardBePrinted = $shouldBoardBePrinted = ($this->showBoard or $this->persistentGame->isLocked());
 		$this->template->currentPlayer = $this->board->getCurrentPlayer();
+
+		if ($shouldBoardBePrinted) {
+			$this->template->board = $this->printBoard($this->board);
+		}
 
 		$this->template->render(__DIR__ . '/templates/gameControl.latte');
 	}
@@ -126,6 +130,28 @@ class GameControl extends Control
 		$this->persistentGame->persistBoard($board);
 
 		return $board;
+	}
+
+	/**
+	 * @param Board $board
+	 * @return string
+	 */
+	private function printBoard(Board $board)
+	{
+		$boardState = $board->getState();
+
+		array_unshift($boardState, null);
+		$boardState = call_user_func_array('array_map', $boardState);
+
+		$output = '';
+		foreach ($boardState as $line) {
+			foreach ($line as $value) {
+				$output .= isset($value) ? "$value " : ". ";
+			}
+			$output .= "\n";
+		}
+
+		return $output;
 	}
 
 }
