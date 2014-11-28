@@ -6,7 +6,6 @@
 
 {control turnForm}
 
-<p n:if="!$isLocked"><a
-			n:href="toggleBoard!">{if $shouldBoardBePrinted}Skrýt hrací pole{else}Zobrazit hrací pole{/if}</a></p>
+<p n:if="!$isLocked"><a n:href="toggleBoard!">{if $shouldBoardBePrinted}Skrýt hrací pole{else}Zobrazit hrací pole{/if}</a></p>
 
 {if $shouldBoardBePrinted}<pre>{$board}</pre>{/if}
