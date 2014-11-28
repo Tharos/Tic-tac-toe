@@ -18,6 +18,6 @@ if (file_exists(__DIR__ . '/config/config.server.neon')) {
 
 $container = $configurator->createContainer();
 
-$container->router[] = new Route('', 'Website:Game:');
+$container->router[] = new Route('', 'Website:Game:default');
 
 return $container;

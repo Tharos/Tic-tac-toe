@@ -1,1 +1,19 @@
-Tic-tac-toe
+{if !$isLocked}
+	<p>
+		{if $shouldBoardBePrinted}
+			<a n:href="hideBoard!">Skrýt hrací pole</a>
+		{else}
+			<a n:href="showBoard!">Zobrazit hrací pole</a>
+		{/if}
+	</p>
+
+	<p>Hráč {$currentPlayer}</p>
+{/if}
+
+<p n:ifset="$message"><strong>{$message}</strong></p>
+
+<p><a n:href="restart!">Začít novou hru</a></p>
+
+{control turnForm}
+
+{if $shouldBoardBePrinted}Hrací pole{/if}

@@ -4,3 +4,10 @@ php:
 nette:
 	session:
 		expiration: 30 days
+
+services:
+	- TicTacToe\PersistentGame
+
+	- implement: WebsiteModule\IGameControlFactory
+	  parameters: [TicTacToe\Settings settings]
+	  arguments: [%settings%]
