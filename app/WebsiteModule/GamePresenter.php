@@ -24,7 +24,7 @@ class GamePresenter extends Presenter
 	protected function createComponentGame()
 	{
 		return $this->gameControlFactory->create(
-			new Settings(3, 3, 2, ['x', 'o'])
+			new Settings(9, 9, 5, ['x', 'o'])
 		);
 	}
 
